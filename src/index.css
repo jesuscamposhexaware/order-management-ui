@@ -1,3 +1,5 @@
+@import url("https://use.fontawesome.com/releases/v5.0.1/css/all.css");
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -11,3 +13,45 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.content {
+  margin-top: 50px;
+  display: 'inline-block';
+}
+
+.search-bar {
+  margin-top: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-bottom: 30px;
+  padding: 5px;
+}
+
+.products-panel {
+  margin-top: 15px;
+  
+}
+
+.product-card {
+  margin: 5px;
+}
+
+.quantity-button {
+  color:black;
+  background-color: #fff;
+  border-color: gray;
+}
+
+.badge-custom:after {
+  content: attr(value);
+  font-size: 14px;
+  color: #fff;
+  background: hsl(202, 87%, 24%);
+  border-radius: 50%;
+  padding: 0 5px;
+  position: relative;
+  left: -8px;
+  top: -10px;
+  opacity: 0.9;
+}
+
