@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-axios.defaults.baseURL = "http://localhost:8085"
+axios.defaults.baseURL = "http://jesuscamposordermanagementdev.us-east-1.elasticbeanstalk.com"
 
 axios.interceptors.request.use((request) => {
     request.headers.common.Accept = 'application/json';
