@@ -4,7 +4,8 @@ import ProductRow from './ProductRow';
 
 const ProductTable = ({
     cart,
-    setCart
+    setCart,
+    showMessage
 }) => {
 
     const handleChange = (p) => {
@@ -12,6 +13,7 @@ const ProductTable = ({
         for (let i = 0; i < cart.length; i++) {
             if (p.idProduct === cart[i].idProduct) {
                 if (p.quantity === 0) {
+                    showMessage(cart[i].name + " removed from cart.", "danger");
                     cart.splice(i, 1);
                 } else {
                     cart[i] = p;
@@ -20,6 +22,7 @@ const ProductTable = ({
             }
         }
         if (!exists) {
+            showMessage(p.name + " added to the cart.", "info");
             cart.push(p);
         }
         setCart([...cart]);
@@ -51,7 +54,7 @@ const ProductTable = ({
                 </tr>
             </thead>
             <tbody>
-                {cart.map((p, index) => (
+                {cart.map((p) => (
                     <ProductRow key={"r-" + p.idProduct} data={p} handleChange={handleChange} />
                 ))}
             </tbody>

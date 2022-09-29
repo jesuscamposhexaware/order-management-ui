@@ -13,7 +13,8 @@ import ProductButton from './ProductButton';
 const ProductCard = ({
     data,
     cart,
-    setCart
+    setCart,
+    showMessage
 }) => {
     const [product, setProduct] = useState({...data,
         quantity: 0
@@ -28,6 +29,7 @@ const ProductCard = ({
         for (let i = 0; i < cart.length; i++) {
             if(p.idProduct === cart[i].idProduct) {
                 if(p.quantity === 0) {
+                    showMessage(cart[i].name + " removed from cart.", "danger");
                     cart.splice(i, 1);
                 } else {
                     cart[i] = p;
@@ -36,6 +38,7 @@ const ProductCard = ({
             }
         }
         if(!exists) {
+            showMessage(p.name + " added to the cart.", "info");
             cart.push(p);
         }
         setCart([...cart]);
@@ -45,7 +48,8 @@ const ProductCard = ({
         if(product.stock > product.quantity) {
             handleChange({
                 ...product,
-                quantity: product.quantity + 1
+                quantity: product.quantity + 1,
+                subtotal: (product.quantity + 1) * product.price
             });
             setProduct({
                 ...product,
@@ -58,11 +62,12 @@ const ProductCard = ({
         if(product.quantity > 0) {
             handleChange({
                 ...product,
-                quantity: product.quantity - 1
+                quantity: product.quantity - 1,
+                subtotal: (product.quantity - 1) * product.price
             });
             setProduct({
                 ...product,
-                quantity: product.quantity - 1
+                quantity: product.quantity - 1,
             })
         }
     }
@@ -70,7 +75,7 @@ const ProductCard = ({
 
     return (
         <Card className='product-card' body style={{ width: '18rem' }}>
-            <img alt="Sample" src="https://picsum.photos/300/200"/>
+            <img alt="Sample" src={product.picture}/>
             <CardBody>
                 <CardTitle tag="h5">
                     {product.name}

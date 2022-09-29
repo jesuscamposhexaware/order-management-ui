@@ -7,7 +7,8 @@ import ProductService from '../../services/ProductService';
 const Store = ({ 
     user,
     cart,
-    setCart
+    setCart,
+    showMessage
 }) => {
     const [showList, setShowList] = useState(null);
     const [products, setProducts] = useState([]);
@@ -29,7 +30,7 @@ const Store = ({
     useEffect(() => {
         let cards = filter ? products.filter(p => p.name.includes(filter)) : products;
         setShowList(cards.map(p => (
-            <ProductCard key={p.idProduct} data={p} cart={cart} setCart={setCart}/>
+            <ProductCard key={p.idProduct} data={p} cart={cart} setCart={setCart} showMessage={showMessage}/>
         )));// eslint-disable-next-line
     }, [products, filter])
 

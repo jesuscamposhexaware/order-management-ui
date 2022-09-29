@@ -27,6 +27,7 @@ const Menu = ({
 
   const doLogout = () => {
     setUser(null);
+    setCart([]);
     navigate('/login');
   }
 
@@ -49,12 +50,8 @@ const Menu = ({
         <Collapse isOpen={isOpen} navbar>
           <Nav className="ms-auto" navbar>
             <NavItem>
-              <Link className="nav-link" to="/orders">Orders</Link>
+              <Link className="nav-link" to="/">Store</Link>
             </NavItem>
-            <NavItem>
-              <Link className="nav-link" to="/products">Products</Link>
-            </NavItem>
-
             {!!user ?
               <UncontrolledDropdown nav>
                 <DropdownToggle nav caret>
@@ -62,7 +59,9 @@ const Menu = ({
                 </DropdownToggle>
                 <DropdownMenu>
                   <DropdownItem header>{user.name + " " + user.lastName}</DropdownItem>
-                  <DropdownItem>My Orders</DropdownItem>
+                  <DropdownItem onClick={() => navigate("/orders")}>My Orders</DropdownItem>
+                  <DropdownItem header>Your cart</DropdownItem>
+                  <Button color="danger" onClick={dropCart}>Drop cart</Button>
                   <DropdownItem divider />
                   <DropdownItem onClick={doLogout}>Logout</DropdownItem>
                 </DropdownMenu>
@@ -73,14 +72,13 @@ const Menu = ({
                 <DropdownToggle nav caret>
                   <i className="fa badge-custom fa-lg" value={cart.length} onClick={onCheckout}>&#xf290;</i>
                 </DropdownToggle>
-                <DropdownMenu>
-                  <DropdownItem header>Your cart</DropdownItem>
-                  <Button color="danger" onClick={dropCart}>Drop cart</Button>
-                </DropdownMenu>
-              </UncontrolledDropdown> : null
+                
+              </UncontrolledDropdown>
+              : null
             }
           </Nav>
         </Collapse>
+
       </Navbar>
     </div>
   );

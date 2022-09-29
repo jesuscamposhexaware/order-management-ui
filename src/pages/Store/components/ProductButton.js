@@ -14,7 +14,7 @@ const ProductButton = ({
     const [right, setRight] = useState(product.quantity < product.stock);
 
     useEffect(() => {
-        const text = product.quantity === 1 ? <i className="fa-solid fa-trash-can"></i> : "-";
+        const text = "-";
         const enable = product.quantity > 1;
         const color = product.quantity === 1 ? 'danger' : 'secondary';
         setLeft({ text, enable, color })

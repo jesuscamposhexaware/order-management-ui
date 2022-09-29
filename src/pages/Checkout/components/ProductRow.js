@@ -11,7 +11,8 @@ const ProductRow = ({
         if(product.stock > product.quantity) {
             handleChange({
                 ...product,
-                quantity: product.quantity + 1
+                quantity: product.quantity + 1,
+                subtotal: (product.quantity + 1) * product.price
             });
             setProduct({
                 ...product,
@@ -24,7 +25,8 @@ const ProductRow = ({
         if(product.quantity > 0) {
             handleChange({
                 ...product,
-                quantity: product.quantity - 1
+                quantity: product.quantity - 1,
+                subtotal: (product.quantity - 1) * product.price
             });
             setProduct({
                 ...product,
@@ -44,7 +46,7 @@ const ProductRow = ({
             {"$" + product.price}
         </td>
         <td>
-            {"$" + product.quantity}
+            {product.quantity}
         </td>
         <td>
             {"$" + (product.price * product.quantity).toFixed(2)}
